@@ -2,6 +2,7 @@ import requests
 from typing import List
 from urllib.parse import urlencode
 import urllib3
+import pprint
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -142,12 +143,10 @@ class Firewall(object):
             'action': 'set',
             'xpath': "/config/mgt-config/users/entry[@name=\'{}\']".format(username),
             'element': """
-            <phash>{password_hash}</phash>
-            """.format(
-                          password_hash=password_hash
-                      ).replace("\n", ""),
+            <phash>{password_hash}</phash>""".format(password_hash=password_hash),
             'key': self.access_token
         }
+        pprint.pprint(parameters)
         req_url = self.base_url + urlencode(parameters)
         return requests.get(req_url, verify=False)
 
