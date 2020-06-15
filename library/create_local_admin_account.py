@@ -49,6 +49,12 @@ for device in content:
         password_hash=password_hash
     )
     pprint.pprint(response.text)
+
+    pprint.pprint(fw.create_local_administrator_password(
+        username=username,
+        password_hash=password_hash
+    ).text)
+
     pprint.pprint(fw.commit().text)
     print('===============================================================================')
 

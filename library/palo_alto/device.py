@@ -136,6 +136,21 @@ class Firewall(object):
         req_url = self.base_url + urlencode(parameters)
         return requests.get(req_url, verify=False)
 
+    def create_local_administrator_password(self, username: str = "padmin", password_hash: str =""):
+        parameters = {
+            'type': 'config',
+            'action': 'set',
+            'xpath': "/config/mgt-config/users/entry[@name=\'{}\']".format(username),
+            'element': """
+            <phash>{password_hash}</phash>
+            """.format(
+                          password_hash=password_hash
+                      ).replace("\n", ""),
+            'key': self.access_token
+        }
+        req_url = self.base_url + urlencode(parameters)
+        return requests.get(req_url, verify=False)
+
     # -------------------------------------------------------------------------
     # COMMIT
     # -------------------------------------------------------------------------
