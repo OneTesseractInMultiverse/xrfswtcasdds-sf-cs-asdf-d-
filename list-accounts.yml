@@ -1,0 +1,29 @@
+- name: List Administrator User Accounts
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  collections:
+      - paloaltonetworks.panos
+
+  pre_tasks:
+    - name: Read Credentials From Vault
+      include_vars: 'firewall-secrets.yml'
+      no_log: 'yes'
+
+  tasks:
+
+    - name: List Accounts
+      ibm_panos_user_list:
+        username: '{{ provider.username }}'
+        password: '{{ provider.password }}'
+        ip_address: '{{ provider.ip_address }}'
+      register: accounts
+
+    - debug:
+        msg: '{{ accounts }}'
+
+
+
+
+

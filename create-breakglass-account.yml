@@ -1,0 +1,40 @@
+- name: Create Break Glass Account
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  vars:
+    profile_name: 'LDAP_test_automation'
+    dn: 'paloaltoADquery@softlayer.local'
+    ldap_servers:
+      servers:
+        - '{"name": "SLDCDA1101", "ip_address": "172.30.74.20", "port": 636}'
+        - '{"name": "SLDCWDC0401", "ip_address": "172.17.82.20", "port": 636}'
+    ldap_account_password: 'DKpYcuFEZGXPR2d'
+
+  collections:
+      - paloaltonetworks.panos
+
+  pre_tasks:
+    - name: Read Credentials From Vault
+      include_vars: 'panorama-secrets.yml'
+      no_log: 'yes'
+
+  tasks:
+
+    - name: Creating LDAP Server Profile
+      create_ldap_account:
+        username: '{{ provider.username }}'
+        password: '{{ provider.password }}'
+        ip_address: '{{ provider.ip_address }}'
+        profile_name: '{{ profile_name }}'
+        dn: '{{ dn }}'
+        ldap_account_password: '{{ ldap_account_password }}'
+      register: result
+
+
+
+
+
+
+

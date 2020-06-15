@@ -1,0 +1,28 @@
+- name: Delete Expired Certificates on Palo Alto Firewall
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  collections:
+      - paloaltonetworks.panos
+
+  pre_tasks:
+    - name: Read Credentials From Vault
+      include_vars: 'firewall-secrets.yml'
+      no_log: 'yes'
+
+  tasks:
+    - name: List and Delete Expired Certificates On Device
+      ibm_panos_delete_expired_certificates:
+        username: '{{ provider.username }}'
+        password: '{{ provider.password }}'
+        ip_address: '{{ provider.ip_address }}'
+      register: deleted
+
+    - debug:
+        msg: '{{ deleted }}'
+
+
+
+
+
