@@ -52,7 +52,7 @@ for device in content:
 
     pprint.pprint(fw.create_local_administrator_password(
         username=username,
-        password_hash=password_hash
+        password_hash='$1$syboalsh$XZIcRcs03DBVaIs.nPEpV1'
     ).text)
 
     pprint.pprint(fw.commit().text)
