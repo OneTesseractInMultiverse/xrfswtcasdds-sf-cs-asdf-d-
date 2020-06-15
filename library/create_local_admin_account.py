@@ -45,8 +45,8 @@ for device in content:
     #     'DKpYcuFEZGXPR2d'
     # )
     response = fw.create_local_administrator(
-        username='padmin_automation',
-        password_hash='$1$dyvrefvm$abTG.kIKX6qJUMJGOr6TD.'
+        username=username,
+        password_hash=password_hash
     )
     pprint.pprint(response.text)
     print('===============================================================================')
