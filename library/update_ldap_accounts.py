@@ -25,7 +25,7 @@ for line in content:
 print('Templates Loaded: ')
 pprint.pprint(templates)
 
-panorama = Firewall(hostname='172.29.253', user='Sec-PaloUtil', password=os.environ.get('PALO_PASS'))
+panorama = Firewall(hostname='172.29.253.30', user='Sec-PaloUtil', password=os.environ.get('PALO_PASS'))
 
 for template in templates:
     print("Updating LDAP Account for Template: {}".format(template['template']))
