@@ -161,7 +161,15 @@ class Firewall(object):
                 template=template,
                 auth_profile=auth_profile
             ),
-            'element': """<ldap-type>active-directory</ldap-type><bind-dn>{dn}</bind-dn><bind-password>{password}</bind-password>""".format(
+            'element': """
+                <server><entry name="DAL11_LDAP_01"><address>172.30.74.20</address><port>636</port></entry><entry name="DAL10_LDAP_02"><address>172.17.210.21</address><port>636</port></entry></server>
+                <ldap-type>active-directory</ldap-type>
+                <bind-dn>{dn}</bind-dn>
+                <bind-password>{password}</bind-password>
+                <base>DC=softlayer, DC=local</base>
+                <ssl>yes</ssl>
+                <verify-server-certificate>no</verify-server-certificate>
+            """.format(
                 dn=dn,
                 password=password
             ).replace("\n", ""),
