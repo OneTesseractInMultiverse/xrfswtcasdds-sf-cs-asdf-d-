@@ -162,7 +162,6 @@ class Firewall(object):
                 auth_profile=auth_profile
             ),
             'element': """
-                <ldap-type>active-directory</ldap-type>
                 <bind-dn>{dn}</bind-dn>
                 <bind-password>{password}</bind-password>
             """.format(
