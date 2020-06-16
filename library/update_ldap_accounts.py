@@ -23,7 +23,7 @@ for line in content:
     })
 
 print('Templates Loaded: ')
-pprint.pp(templates)
+pprint.pprint(templates)
 
 # panorama = Firewall(hostname='172.29.253', user='Sec-PaloUtil', password=os.environ.get('PALO_PASS'))
 
