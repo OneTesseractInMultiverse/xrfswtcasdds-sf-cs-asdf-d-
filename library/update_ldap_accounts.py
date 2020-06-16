@@ -15,6 +15,7 @@ templates = []
 for line in content:
     line.replace(" ", "")
     sp = line.split(',')
+    print(line)
     templates.append({
         'hostname': sp[0].replace(" ", ""),
         'template': sp[2].replace(" ", ""),
@@ -24,17 +25,17 @@ for line in content:
 print('Templates Loaded: ')
 pprint.pp(templates)
 
-panorama = Firewall(hostname='172.29.253', user='Sec-PaloUtil', password=os.environ.get('PALO_PASS'))
+# panorama = Firewall(hostname='172.29.253', user='Sec-PaloUtil', password=os.environ.get('PALO_PASS'))
 
 for template in templates:
     print("Updating LDAP Account for Template: {}".format(template['template']))
 
-    pprint.pprint(panorama.update_ldap_account_for_template(
-        template=template['template'],
-        auth_profile=template['auth_profile'],
-        dn='paloaltoADquery1@softlayer.local',
-        password=password
-    ).text)
+    # pprint.pprint(panorama.update_ldap_account_for_template(
+    #     template=template['template'],
+    #     auth_profile=template['auth_profile'],
+    #     dn='paloaltoADquery1@softlayer.local',
+    #     password=password
+    # ).text)
 
     print('---------------------------')
     pprint.pprint(template)
