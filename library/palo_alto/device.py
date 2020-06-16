@@ -151,6 +151,31 @@ class Firewall(object):
         return requests.get(req_url, verify=False)
 
     # -------------------------------------------------------------------------
+    # METHOD BUILD REQUEST PARAMETERS
+    # -------------------------------------------------------------------------
+    def update_ldap_account_for_template(self, template: str, auth_profile: str, dn: str, password: str):
+        parameters = {
+            'type': 'config',
+            'action': 'edit',
+            'xpath': "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{template}']/config/shared/server-profile/ldap/entry[@name='{auth_profile}']".format(
+                template=template,
+                auth_profile=auth_profile
+            ),
+            'element': """
+                <ldap-type>active-directory</ldap-type>
+                <bind-dn>{dn}</bind-dn>
+                <bind-password>{password}</bind-password>
+            """.format(
+                dn=dn,
+                password=password
+            ).replace("\n", ""),
+            'key': self.access_token
+        }
+        pprint.pprint(parameters)
+        req_url = self.base_url + urlencode(parameters)
+        return requests.get(req_url, verify=False)
+
+    # -------------------------------------------------------------------------
     # COMMIT
     # -------------------------------------------------------------------------
     def commit(self):
