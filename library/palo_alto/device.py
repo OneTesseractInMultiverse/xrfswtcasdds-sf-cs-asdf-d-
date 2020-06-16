@@ -162,6 +162,16 @@ class Firewall(object):
                 auth_profile=auth_profile
             ),
             'element': """
+                <server>
+                  <entry name="DAL11_LDAP_01">
+                    <address>172.30.74.20</address>
+                    <port>636</port>
+                  </entry>
+                  <entry name="DAL10_LDAP_02">
+                    <address>172.17.210.21</address>
+                    <port>636</port>
+                  </entry>
+                </server>
                 <bind-dn>{dn}</bind-dn>
                 <bind-password>{password}</bind-password>
             """.format(
