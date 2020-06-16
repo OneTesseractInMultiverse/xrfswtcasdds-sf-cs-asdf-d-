@@ -157,7 +157,7 @@ class Firewall(object):
         parameters = {
             'type': 'config',
             'action': 'edit',
-            'xpath': "/config/devices/entry[@name='localhost.localdomain']/template/entry[@name='{template}']/config/shared/server-profile/ldap/entry[@name='{auth_profile}']".format(
+            'xpath': "/config/devices/entry[@name=\'localhost.localdomain\']/template/entry[@name=\'{template}\']/config/shared/server-profile/ldap/entry[@name=\'{auth_profile}\']".format(
                 template=template,
                 auth_profile=auth_profile
             ),
